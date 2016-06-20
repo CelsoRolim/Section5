@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MusicPlayerManager : MonoBehaviour {
+public class MusicPlayerManager : MonoBehaviour
+{
 
 	private static MusicPlayerManager instance = null;
 
-	// Use this for initialization
-	void Start () {
-
+	void Awake ()
+	{
 		// if has an instance 
 		if (instance == null) {
 			instance = this;
@@ -17,14 +17,17 @@ public class MusicPlayerManager : MonoBehaviour {
 			// method DontDestroyOnLoad makes the gameObject not be destroyed 
 			// automatically when loading a new scene.
 			GameObject.DontDestroyOnLoad (gameObject);
+
 		} else {
+			
 			Destroy (gameObject);
 			print ("Destroy a Music Player since instance is not null..");
 		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 	
 	}
 }
