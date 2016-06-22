@@ -4,6 +4,8 @@ using System.Collections;
 public class LoseColider : MonoBehaviour
 {
 
+    public BlockSceneManager blockSceneManager;
+
     // Trigger collider ignores the physics (the ball pass throught the LoseObject)
     void OnTriggerEnter2D(Collider2D trigger)
     {
@@ -14,5 +16,8 @@ public class LoseColider : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("OnCollisionEnter2D");
+
+        // the ball hits the ground. So the game ends.
+        blockSceneManager.goToScene("Win");
     }
 }
