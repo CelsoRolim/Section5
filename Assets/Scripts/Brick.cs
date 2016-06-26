@@ -24,7 +24,7 @@ public class Brick : MonoBehaviour {
         timesHits++;
 
         // extending the idea of the ball to do two hits at once.
-        if(maxHits >= timesHits)
+        if(maxHits <= timesHits)
         {
             // destroy object
             Destroy(gameObject);
