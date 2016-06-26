@@ -8,7 +8,7 @@ public class BlockSceneManager : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -22,6 +22,6 @@ public class BlockSceneManager : MonoBehaviour {
 
     public void LoadNextLevel()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
