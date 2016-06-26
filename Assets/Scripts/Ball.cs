@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ball : MonoBehaviour {
+public class Ball : MonoBehaviour
+{
 
-    public Paddle paddle;
+    private Paddle paddle;
     private Vector3 paddleToBall;
     private bool hasStarted;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+
+        // get reference to the object Paddle
+        paddle = GameObject.FindObjectOfType<Paddle>();
 
         // get the difference between ball and paddle
         paddleToBall = this.transform.position - paddle.transform.position;
@@ -17,7 +22,8 @@ public class Ball : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 
         // update the position of the ball.
         if (!hasStarted)

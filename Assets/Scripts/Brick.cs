@@ -21,5 +21,8 @@ public class Brick : MonoBehaviour {
     {
         timesHits++;
         Debug.Log("Time hits: " + timesHits);
+
+
     }
+    
 }

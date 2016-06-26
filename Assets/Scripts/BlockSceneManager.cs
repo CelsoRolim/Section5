@@ -19,4 +19,9 @@ public class BlockSceneManager : MonoBehaviour {
 
         SceneManager.LoadScene(sceneName);
     }
+
+    public void LoadNextLevel()
+    {
+
+    }
 }
