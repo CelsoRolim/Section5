@@ -22,14 +22,14 @@ public class Brick : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision)
     {
         timesHits++;
-        Debug.Log("Time hits: " + timesHits);
 
-        // TODO 
-        // create logic to detect win condition
-        //        if(timesHits == 3)
-        //        {
-        SimulateWin();
-        //}
+        // extending the idea of the ball to do two hits at once.
+        if(maxHits >= timesHits)
+        {
+            // destroy object
+            Destroy(gameObject);
+        }
+
     }
 
     // method to simulate win while the logic to is on hold
