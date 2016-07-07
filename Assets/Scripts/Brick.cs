@@ -4,6 +4,7 @@ using System.Collections;
 public class Brick : MonoBehaviour {
 
     public int maxHits;
+    public Sprite[] hitSprites;
     private int timesHits;
     private BlockSceneManager blockSceneManager;
 
@@ -28,8 +29,20 @@ public class Brick : MonoBehaviour {
         {
             // destroy object
             Destroy(gameObject);
+        } else
+        {
+            ChangeSprite();
         }
+    }
 
+    // Method to change sprits according to hit count
+    private void ChangeSprite()
+    {
+        // get the sprite in case the brick was hit "timesHits - 1"
+        int spritHitIndex = timesHits - 1;
+
+        // load the sprite representing the state after being hit
+        this.GetComponent<SpriteRenderer>().sprite = hitSprites[spritHitIndex];
     }
 
     // method to simulate win while the logic to is on hold
