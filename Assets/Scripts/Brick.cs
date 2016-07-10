@@ -4,14 +4,24 @@ using System.Collections;
 public class Brick : MonoBehaviour {
 
     public Sprite[] hitSprites;
+    public static int breakableCount = 0;
 
     private int timesHits;
     private BlockSceneManager blockSceneManager;
+	private bool isBreakable;
 
     // Use this for initialization
     void Start () {
         blockSceneManager = GameObject.FindObjectOfType<BlockSceneManager>();
         timesHits = 0;
+
+		// check if current instance has breakable tag.
+		isBreakable = (this.tag == "Breakable");
+		if(isBreakable) 
+		{
+			// increment variable of total breakable bricks
+			breakableCount++;
+		}
     }
 	
 	// Update is called once per frame
@@ -22,7 +32,6 @@ public class Brick : MonoBehaviour {
     // Collision collider
     void OnCollisionEnter2D(Collision2D collision)
     {
-        bool isBreakable = (this.tag == "Breakable");
         if(!isBreakable)
         {
             return;
@@ -39,7 +48,13 @@ public class Brick : MonoBehaviour {
         // extending the idea of the ball to do two hits at once.
         if (maxHits <= timesHits)
         {
-            // destroy object
+			// decrease the total of breakable instances 
+			breakableCount--;            
+
+			// check if all bricks have been destroyed.
+			blockSceneManager.BrickDestroyed();
+
+			// destroy object
             Destroy(gameObject);
         }
         else

@@ -24,4 +24,13 @@ public class BlockSceneManager : MonoBehaviour {
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+	// Method to check if all breakable bricks were destroyed.
+	public void BrickDestroyed() 
+	{
+		if(Brick.breakableCount <= 0) 
+		{
+			LoadNextLevel ();
+		}
+	}
 }
