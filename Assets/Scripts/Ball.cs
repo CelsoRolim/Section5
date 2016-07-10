@@ -40,4 +40,16 @@ public class Ball : MonoBehaviour
             }
         }
     }
+
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		// only play audio if game has started
+		if (!hasStarted) 
+		{
+			return;
+		}
+
+		AudioSource audioSource = this.GetComponent<AudioSource>();
+		audioSource.Play ();
+	}	
 }

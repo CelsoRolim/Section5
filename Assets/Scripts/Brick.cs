@@ -9,6 +9,12 @@ public class Brick : MonoBehaviour {
     private int timesHits;
     private BlockSceneManager blockSceneManager;
 	private bool isBreakable;
+	private AudioSource crackSound;
+
+	void Awake()
+	{
+		crackSound = this.GetComponent<AudioSource>();
+	}
 
     // Use this for initialization
     void Start () {
@@ -23,11 +29,6 @@ public class Brick : MonoBehaviour {
 			breakableCount++;
 		}
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     // Collision collider
     void OnCollisionEnter2D(Collision2D collision)
@@ -48,6 +49,8 @@ public class Brick : MonoBehaviour {
         // extending the idea of the ball to do two hits at once.
         if (maxHits <= timesHits)
         {
+			AudioSource.PlayClipAtPoint (crackSound.clip, transform.position);
+
 			// decrease the total of breakable instances 
 			breakableCount--;            
 
