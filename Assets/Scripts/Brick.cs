@@ -13,11 +13,15 @@ public class Brick : MonoBehaviour {
 
 	void Awake()
 	{
+		Debug.Log ("Awake");
 		crackSound = this.GetComponent<AudioSource>();
+		breakableCount = 0;
 	}
 
     // Use this for initialization
-    void Start () {
+    void Start () 
+	{
+		Debug.Log ("Start");
         blockSceneManager = GameObject.FindObjectOfType<BlockSceneManager>();
         timesHits = 0;
 
@@ -53,7 +57,7 @@ public class Brick : MonoBehaviour {
 
 			// decrease the total of breakable instances 
 			breakableCount--;            
-
+			Debug.Log (breakableCount);
 			// check if all bricks have been destroyed.
 			blockSceneManager.BrickDestroyed();
 
