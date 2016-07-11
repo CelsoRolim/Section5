@@ -7,6 +7,12 @@ public class Ball : MonoBehaviour
     private Paddle paddle;
     private Vector3 paddleToBall;
     private bool hasStarted;
+	private Rigidbody2D rigidBodyBrick;
+
+	void Awake()
+	{
+		rigidBodyBrick = this.GetComponent<Rigidbody2D>();
+	}
 
 	// Use this for initialization
 	void Start ()
@@ -49,7 +55,16 @@ public class Ball : MonoBehaviour
 			return;
 		}
 
+		AddRandomVelocity();
+
 		AudioSource audioSource = this.GetComponent<AudioSource>();
 		audioSource.Play ();
-	}	
+	}
+
+	// Method to add a random ammount of velocity
+	private void AddRandomVelocity()
+	{
+		Vector2 randomVelocity = new Vector2 (Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
+		rigidBodyBrick.velocity += randomVelocity;
+	}
 }
