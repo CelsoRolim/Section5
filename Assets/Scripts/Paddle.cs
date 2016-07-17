@@ -4,6 +4,7 @@ using System.Collections;
 public class Paddle : MonoBehaviour {
 
 	public bool autoPlay = false;
+	public float minX, maxX;
 
 	private Ball ball;
 
@@ -31,14 +32,14 @@ public class Paddle : MonoBehaviour {
 		Vector3 ballPos = ball.transform.position;
 
 		// Mathf.Clamp will keep the x position between 0.5f and 15.5f
-		paddlePos.x = Mathf.Clamp(ballPos.x, 0.5f, 15.5f);
+		paddlePos.x = Mathf.Clamp(ballPos.x, minX, maxX);
 		this.transform.position = paddlePos;	
 	}
 
 	void MouseMove()
 	{
 		float mousePosInBox = ((Input.mousePosition.x / Screen.width) * 16);
-		mousePosInBox = Mathf.Clamp(mousePosInBox, 0.5f, 15.5f);
+		mousePosInBox = Mathf.Clamp(mousePosInBox, minX, maxX);
 
 		Vector3 position = new Vector3(mousePosInBox, this.transform.position.y, 0f);
 
