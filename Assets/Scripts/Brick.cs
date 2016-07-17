@@ -4,6 +4,7 @@ using System.Collections;
 public class Brick : MonoBehaviour {
 
     public Sprite[] hitSprites;
+	public GameObject smokeObject;
     public static int breakableCount = 0;
 
     private int timesHits;
@@ -57,9 +58,11 @@ public class Brick : MonoBehaviour {
 
 			// decrease the total of breakable instances 
 			breakableCount--;            
-			Debug.Log (breakableCount);
+
 			// check if all bricks have been destroyed.
 			blockSceneManager.BrickDestroyed();
+
+			Explode ();
 
 			// destroy object
             Destroy(gameObject);
@@ -77,13 +80,23 @@ public class Brick : MonoBehaviour {
         int spritHitIndex = timesHits - 1;
 
         // if the sprite is defined.
-        if(hitSprites[spritHitIndex])
-        {
+		if (hitSprites [spritHitIndex]) {
 
-            // load the sprite representing the state after being hit
-            this.GetComponent<SpriteRenderer>().sprite = hitSprites[spritHitIndex];
-        }
+			// load the sprite representing the state after being hit
+			this.GetComponent<SpriteRenderer> ().sprite = hitSprites [spritHitIndex];
+		} else {
+
+			Debug.LogError ("");
+		}	
     }
+
+	// Method to start the explosion. 
+	private void Explode()
+	{
+		GameObject smokeExplosion = (GameObject)Instantiate (smokeObject, transform.position, Quaternion.identity);
+		ParticleSystem particle = smokeExplosion.GetComponent<ParticleSystem> ();
+		particle.startColor = GetComponent<SpriteRenderer> ().color;
+	}
 
     // method to simulate win while the logic to is on hold
     private void SimulateWin()
